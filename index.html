@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,280 +7,367 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  :root {
-    --bg: #f2f2f7; --bg2: #ffffff; --bg3: #f9f9fb;
-    --surface: rgba(255,255,255,0.72);
-    --border: rgba(0,0,0,0.06); --border2: rgba(0,0,0,0.1);
-    --text: #1c1c1e; --text2: #3a3a3c; --text3: #636366; --text4: #8e8e93;
-    --accent: #007aff; --accent2: #5856d6; --accent3: #30d158;
-    --orange: #ff9f0a; --pink: #ff2d55;
-    --blur: blur(20px) saturate(180%);
-    --radius: 18px; --radius-sm: 12px; --radius-xs: 8px;
-    --shadow: 0 2px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
-    --transition: cubic-bezier(0.32, 0.72, 0, 1);
-  }
-  [data-theme="dark"] {
-    --bg: #000000; --bg2: #1c1c1e; --bg3: #2c2c2e;
-    --surface: rgba(28,28,30,0.8);
-    --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
-    --text: #f2f2f7; --text2: #ebebf5; --text3: #ebebf599; --text4: #ebebf54d;
-    --shadow: 0 2px 20px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.2);
-    --shadow-lg: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
-  }
+:root {
+  --bg: #f2f2f7; --bg2: #ffffff; --bg3: #f9f9fb;
+  --surface: rgba(255,255,255,0.72);
+  --border: rgba(0,0,0,0.06); --border2: rgba(0,0,0,0.1);
+  --text: #1c1c1e; --text2: #3a3a3c; --text3: #636366; --text4: #8e8e93;
+  --accent: #007aff; --accent2: #5856d6; --accent3: #30d158;
+  --orange: #ff9f0a; --pink: #ff2d55;
+  --blur: blur(20px) saturate(180%);
+  --radius: 18px; --radius-sm: 12px; --radius-xs: 8px;
+  --shadow: 0 2px 20px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+  --transition: cubic-bezier(0.32, 0.72, 0, 1);
+}
+[data-theme="dark"] {
+  --bg: #000000; --bg2: #1c1c1e; --bg3: #2c2c2e;
+  --surface: rgba(28,28,30,0.85);
+  --border: rgba(255,255,255,0.08); --border2: rgba(255,255,255,0.14);
+  --text: #f2f2f7; --text2: #ebebf5; --text3: #ebebf599; --text4: #ebebf54d;
+  --shadow: 0 2px 20px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.2);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+}
 
-  * { cursor: none !important; }
-  #cursor { width:10px;height:10px;background:var(--accent);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s ease,width 0.2s var(--transition),height 0.2s var(--transition),background 0.2s; }
-  #cursor-ring { width:36px;height:36px;border:1.5px solid rgba(0,122,255,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left 0.12s ease,top 0.12s ease,width 0.25s var(--transition),height 0.25s var(--transition),border-color 0.2s; }
-  body.hovering #cursor { width:14px;height:14px;background:var(--accent2); }
-  body.hovering #cursor-ring { width:48px;height:48px;border-color:rgba(88,86,214,0.5); }
-  body.clicking #cursor { transform:translate(-50%,-50%) scale(0.6); }
+/* ── CURSOR ── */
+* { cursor: none !important; }
+#cursor {
+  width:10px; height:10px; background:var(--accent); border-radius:50%;
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform 0.1s ease, width 0.2s var(--transition), height 0.2s var(--transition), background 0.2s;
+}
+#cursor-ring {
+  width:36px; height:36px; border:1.5px solid rgba(0,122,255,0.4); border-radius:50%;
+  position:fixed; top:0; left:0; pointer-events:none; z-index:9998; transform:translate(-50%,-50%);
+  transition:left 0.12s ease, top 0.12s ease, width 0.25s var(--transition), height 0.25s var(--transition), border-color 0.2s;
+}
+body.hovering #cursor { width:14px; height:14px; background:var(--accent2); }
+body.hovering #cursor-ring { width:48px; height:48px; border-color:rgba(88,86,214,0.5); }
+body.clicking #cursor { transform:translate(-50%,-50%) scale(0.6); }
 
-  body { font-family:'DM Sans',-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;transition:background 0.4s,color 0.4s; }
-  #bg-canvas { position:fixed;inset:0;z-index:0;pointer-events:none; }
+/* ── BASE ── */
+body {
+  font-family:'DM Sans',-apple-system,sans-serif;
+  background:var(--bg); color:var(--text);
+  min-height:100vh; overflow-x:hidden;
+  transition:background 0.4s, color 0.4s;
+}
+#bg-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
 
-  .page { display:none;opacity:0;transform:translateY(12px); }
-  .page.active { display:block;animation:pageIn 0.45s var(--transition) forwards; }
-  @keyframes pageIn { to { opacity:1;transform:translateY(0); } }
+.page { display:none; opacity:0; transform:translateY(12px); }
+.page.active { display:block; animation:pageIn 0.45s var(--transition) forwards; }
+@keyframes pageIn { to { opacity:1; transform:translateY(0); } }
 
-  .container { max-width:680px;margin:0 auto;padding:0 20px 120px;position:relative;z-index:1; }
+.container { max-width:680px; margin:0 auto; padding:0 20px 120px; position:relative; z-index:1; }
 
-  /* BANNER */
-  .banner-wrap { position:relative;margin:0 -20px;height:200px;overflow:hidden; }
-  .banner { width:100%;height:100%;background:linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#4facfe 75%,#00f2fe 100%);background-size:300% 300%;animation:gradientShift 8s ease infinite; }
-  @keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
-  .banner-overlay { position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,var(--bg) 100%); }
+/* ── BANNER ── */
+.banner-wrap { position:relative; margin:0 -20px; height:200px; overflow:hidden; }
+.banner {
+  width:100%; height:100%;
+  background:linear-gradient(135deg,#667eea 0%,#764ba2 25%,#f093fb 50%,#4facfe 75%,#00f2fe 100%);
+  background-size:300% 300%; animation:gradientShift 8s ease infinite;
+}
+@keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+.banner-overlay { position:absolute; inset:0; background:linear-gradient(to bottom,transparent 40%,var(--bg) 100%); }
 
-  /* PROFILE */
-  .profile-header { display:flex;align-items:flex-end;gap:16px;margin-top:-50px;margin-bottom:24px;padding:0 4px;position:relative;z-index:2; }
-  .avatar-wrap { position:relative;flex-shrink:0; }
-  .avatar { width:96px;height:96px;border-radius:50%;border:4px solid var(--bg);background:linear-gradient(135deg,#667eea,#764ba2);box-shadow:var(--shadow-lg);transition:transform 0.3s var(--transition),box-shadow 0.3s;display:flex;align-items:center;justify-content:center;font-size:2.5rem;overflow:hidden; }
-  .avatar:hover { transform:scale(1.05);box-shadow:0 12px 40px rgba(0,122,255,0.3); }
-  .avatar-status { position:absolute;bottom:4px;right:4px;width:16px;height:16px;background:var(--accent3);border-radius:50%;border:2.5px solid var(--bg);animation:pulse-status 2s ease infinite; }
-  @keyframes pulse-status { 0%,100%{box-shadow:0 0 0 2px rgba(48,209,88,0.3)} 50%{box-shadow:0 0 0 5px rgba(48,209,88,0)} }
-  .profile-info { flex:1;padding-bottom:6px; }
-  .profile-name { font-family:'Instrument Serif',serif;font-size:1.7rem;font-weight:400;color:var(--text);line-height:1.1;letter-spacing:-0.02em; }
-  .profile-handle { font-size:0.85rem;color:var(--text4);font-weight:400;margin-top:2px; }
+/* ── PROFILE ── */
+.profile-header {
+  display:flex; align-items:flex-end; gap:16px;
+  margin-top:-50px; margin-bottom:24px; padding:0 4px;
+  position:relative; z-index:2;
+}
+.avatar-wrap { position:relative; flex-shrink:0; }
+.avatar {
+  width:96px; height:96px; border-radius:50%;
+  border:4px solid var(--bg);
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  box-shadow:var(--shadow-lg);
+  transition:transform 0.3s var(--transition), box-shadow 0.3s;
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.5rem; overflow:hidden;
+}
+.avatar:hover { transform:scale(1.05); box-shadow:0 12px 40px rgba(0,122,255,0.3); }
+.avatar-status {
+  position:absolute; bottom:4px; right:4px;
+  width:16px; height:16px; background:var(--accent3);
+  border-radius:50%; border:2.5px solid var(--bg);
+  animation:pulse-status 2s ease infinite;
+}
+@keyframes pulse-status {
+  0%,100% { box-shadow:0 0 0 2px rgba(48,209,88,0.3); }
+  50%      { box-shadow:0 0 0 5px rgba(48,209,88,0);   }
+}
+.profile-info { flex:1; padding-bottom:6px; }
 
-  /* BADGES */
-  .badges { display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px; }
-  .badge { display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;font-size:0.72rem;font-weight:500;border:1px solid var(--border2);background:var(--surface);backdrop-filter:var(--blur);color:var(--text2);transition:transform 0.2s,box-shadow 0.2s;user-select:none; }
-  .badge:hover { transform:translateY(-2px);box-shadow:var(--shadow); }
-  .badge.verified { background:rgba(0,122,255,0.08);border-color:rgba(0,122,255,0.2);color:var(--accent); }
-  .badge.premium { background:linear-gradient(135deg,rgba(255,159,10,0.1),rgba(255,45,85,0.1));border-color:rgba(255,159,10,0.3);color:var(--orange); }
-  .badge.dev { background:rgba(48,209,88,0.08);border-color:rgba(48,209,88,0.2);color:var(--accent3); }
-  .badge.roblox { background:rgba(255,45,85,0.08);border-color:rgba(255,45,85,0.2);color:var(--pink); }
+/* ── NAME GLOW ── */
+.profile-name {
+  font-family:'Instrument Serif',serif;
+  font-size:1.7rem; font-weight:400; line-height:1.1; letter-spacing:-0.02em;
+  color:var(--text);
+  /* subtle layered glow — soft lavender/blue tones for dark, invisible in light */
+  text-shadow:
+    0 0 20px rgba(120,110,255,0.35),
+    0 0 40px rgba(88,86,214,0.18),
+    0 0 80px rgba(0,122,255,0.10);
+  transition:text-shadow 0.4s;
+}
+[data-theme="dark"] .profile-name {
+  text-shadow:
+    0 0 18px rgba(140,130,255,0.45),
+    0 0 40px rgba(88,86,214,0.22),
+    0 0 90px rgba(0,122,255,0.12);
+}
+/* light mode: kill glow */
+:root:not([data-theme="dark"]) .profile-name { text-shadow: none; }
 
-  /* BIO */
-  .bio-card { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:14px;box-shadow:var(--shadow); }
-  .bio-text { font-size:0.92rem;line-height:1.65;color:var(--text2);font-weight:300; }
-  .bio-text em { font-style:italic;color:var(--text3); }
-  .bio-meta { display:flex;gap:16px;margin-top:12px;padding-top:12px;border-top:1px solid var(--border);flex-wrap:wrap; }
-  .bio-meta-item { display:flex;align-items:center;gap:6px;font-size:0.8rem;color:var(--text4); }
+.profile-handle { font-size:0.85rem; color:var(--text4); font-weight:400; margin-top:2px; }
 
-  /* STATS */
-  .stats-row { display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px; }
-  .stat-card { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;text-align:center;box-shadow:var(--shadow);transition:transform 0.2s var(--transition),box-shadow 0.2s; }
-  .stat-card:hover { transform:translateY(-3px);box-shadow:var(--shadow-lg); }
-  .stat-num { font-size:1.5rem;font-weight:600;color:var(--text);line-height:1;letter-spacing:-0.03em; }
-  .stat-label { font-size:0.72rem;color:var(--text4);margin-top:4px;text-transform:uppercase;letter-spacing:0.06em; }
+/* ── BADGES ── */
+.badges { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
+.badge {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:5px 10px; border-radius:20px; font-size:0.72rem; font-weight:500;
+  border:1px solid var(--border2); background:var(--surface);
+  backdrop-filter:var(--blur); color:var(--text2);
+  transition:transform 0.2s, box-shadow 0.2s; user-select:none;
+}
+.badge:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+.badge.verified { background:rgba(0,122,255,0.08); border-color:rgba(0,122,255,0.2); color:var(--accent); }
+.badge.premium  { background:linear-gradient(135deg,rgba(255,159,10,0.1),rgba(255,45,85,0.1)); border-color:rgba(255,159,10,0.3); color:var(--orange); }
+.badge.dev      { background:rgba(48,209,88,0.08); border-color:rgba(48,209,88,0.2); color:var(--accent3); }
+.badge.roblox   { background:rgba(255,45,85,0.08); border-color:rgba(255,45,85,0.2); color:var(--pink); }
 
-  .section-label { font-size:0.68rem;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--text4);padding:0 4px;margin:20px 0 8px; }
+/* ── BIO ── */
+.bio-card {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:18px 20px; margin-bottom:14px; box-shadow:var(--shadow);
+}
+.bio-text { font-size:0.92rem; line-height:1.65; color:var(--text2); font-weight:300; }
+.bio-text em { font-style:italic; color:var(--text3); }
+.bio-meta { display:flex; gap:16px; margin-top:12px; padding-top:12px; border-top:1px solid var(--border); flex-wrap:wrap; }
+.bio-meta-item { display:flex; align-items:center; gap:6px; font-size:0.8rem; color:var(--text4); }
 
-  /* LINKS */
-  .links-grid { display:flex;flex-direction:column;gap:8px;margin-bottom:14px; }
-  .link-item { display:flex;align-items:center;gap:14px;background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);transition:transform 0.22s var(--transition),box-shadow 0.22s,border-color 0.2s;position:relative;overflow:hidden; }
-  .link-item:hover { transform:translateX(4px);box-shadow:var(--shadow-lg);border-color:var(--border2); }
-  .link-icon { width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;transition:transform 0.2s; }
-  .link-item:hover .link-icon { transform:scale(1.1) rotate(-4deg); }
-  .link-text { flex:1; }
-  .link-name { font-size:0.88rem;font-weight:500; }
-  .link-url { font-size:0.74rem;color:var(--text4);margin-top:1px; }
-  .link-arrow { color:var(--text4);font-size:0.8rem;transition:transform 0.2s,color 0.2s; }
-  .link-item:hover .link-arrow { transform:translateX(3px);color:var(--accent); }
+/* ── STATS ── */
+.stats-row { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:14px; }
+.stat-card {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:16px; text-align:center; box-shadow:var(--shadow);
+  transition:transform 0.2s var(--transition), box-shadow 0.2s;
+}
+.stat-card:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+.stat-num { font-size:1.5rem; font-weight:600; color:var(--text); line-height:1; letter-spacing:-0.03em; }
+.stat-label { font-size:0.72rem; color:var(--text4); margin-top:4px; text-transform:uppercase; letter-spacing:0.06em; }
 
- /* MUSIC */
-  .music-player { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px; }
-  .music-cover { width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem; }
-  .music-player.playing .music-cover { animation:vinyl 4s linear infinite; }
-  @keyframes vinyl { from{filter:hue-rotate(0deg)} to{filter:hue-rotate(360deg)} }
-  .music-info { flex:1;min-width:0; }
-  .music-title { font-size:0.88rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-  .music-artist { font-size:0.75rem;color:var(--text4);margin-top:2px; }
-  .music-progress { height:3px;background:var(--border2);border-radius:2px;margin-top:10px;overflow:hidden;cursor:pointer; }
-  .music-progress-bar { height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;width:35%;transition:width 0.5s linear; }
-  .music-controls { display:flex;align-items:center;gap:10px;flex-shrink:0; }
-  .music-btn { background:none;border:none;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text3);transition:color 0.2s,background 0.2s,transform 0.15s;font-size:0.9rem; }
-  .music-btn:hover { color:var(--text);background:var(--border); }
-  .music-btn.play-btn { width:36px;height:36px;background:var(--accent);color:white;font-size:0.85rem; }
-  .music-btn.play-btn:hover { background:var(--accent2);transform:scale(1.08); }
+.section-label { font-size:0.68rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--text4); padding:0 4px; margin:20px 0 8px; }
 
+/* ── LINKS ── */
+.links-grid { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+.link-item {
+  display:flex; align-items:center; gap:14px;
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:14px 16px; text-decoration:none; color:var(--text);
+  box-shadow:var(--shadow);
+  transition:transform 0.22s var(--transition), box-shadow 0.22s, border-color 0.2s;
+  position:relative; overflow:hidden;
+}
+.link-item:hover { transform:translateX(4px); box-shadow:var(--shadow-lg); border-color:var(--border2); }
+.link-icon { width:38px; height:38px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; transition:transform 0.2s; }
+.link-item:hover .link-icon { transform:scale(1.1) rotate(-4deg); }
+.link-text { flex:1; }
+.link-name { font-size:0.88rem; font-weight:500; }
+.link-url  { font-size:0.74rem; color:var(--text4); margin-top:1px; }
+.link-arrow { color:var(--text4); font-size:0.8rem; transition:transform 0.2s, color 0.2s; }
+.link-item:hover .link-arrow { transform:translateX(3px); color:var(--accent); }
 
-  /* CURRENTLY */
-  .currently-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px; }
-  .currently-item { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s; }
-  .currently-item:hover { transform:translateY(-2px);box-shadow:var(--shadow-lg); }
-  .currently-label { font-size:0.66rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text4);margin-bottom:6px; }
-  .currently-value { font-size:0.88rem;font-weight:500;color:var(--text); }
+/* ── CURRENTLY ── */
+.currently-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:14px; }
+.currently-item {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:14px; box-shadow:var(--shadow);
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.currently-item:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+.currently-label { font-size:0.66rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--text4); margin-bottom:6px; }
+.currently-value { font-size:0.88rem; font-weight:500; color:var(--text); }
 
-  /* ═══════════════════════════════
-     PROJECTS PAGE
-  ═══════════════════════════════ */
-  .project-featured { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:10px;box-shadow:var(--shadow);transition:transform 0.22s var(--transition),box-shadow 0.22s; }
-  .project-featured:hover { transform:translateY(-3px);box-shadow:var(--shadow-lg); }
-  .project-featured-header { display:flex;align-items:flex-start;gap:14px;margin-bottom:14px; }
-  .project-icon { width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;box-shadow:0 4px 14px rgba(0,0,0,0.1); }
-  .project-featured-info { flex:1; }
-  .project-featured-name { font-size:1.05rem;font-weight:600;color:var(--text);letter-spacing:-0.02em; }
-  .project-featured-sub { font-size:0.78rem;color:var(--text4);margin-top:3px; }
-  .project-status { display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:0.68rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;flex-shrink:0; }
-  .project-status.active { background:rgba(48,209,88,0.12);color:var(--accent3);border:1px solid rgba(48,209,88,0.25); }
-  .project-status.paused { background:rgba(255,159,10,0.1);color:var(--orange);border:1px solid rgba(255,159,10,0.25); }
-  .project-status.done { background:rgba(0,122,255,0.08);color:var(--accent);border:1px solid rgba(0,122,255,0.2); }
-  .project-status-dot { width:6px;height:6px;border-radius:50%;background:currentColor; }
-  .project-status.active .project-status-dot { animation:pulse-dot 1.5s ease infinite; }
-  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
-  .project-desc { font-size:0.88rem;line-height:1.65;color:var(--text2);font-weight:300;margin-bottom:14px; }
-  .project-progress-wrap { margin-bottom:14px; }
-  .project-progress-header { display:flex;justify-content:space-between;align-items:center;margin-bottom:6px; }
-  .project-progress-label { font-size:0.72rem;color:var(--text4);text-transform:uppercase;letter-spacing:0.06em; }
-  .project-progress-pct { font-size:0.78rem;font-weight:600;color:var(--text); }
-  .project-progress-bg { height:5px;background:var(--border2);border-radius:3px;overflow:hidden; }
-  .project-progress-fill { height:100%;border-radius:3px;width:0%;transition:width 1.2s var(--transition); }
-  .project-tags { display:flex;flex-wrap:wrap;gap:5px; }
-  .project-tag { background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-xs);padding:4px 9px;font-size:0.72rem;color:var(--text3); }
+/* ── DISCORD STATUS ── */
+.status-online  { background:#23a55a !important; }
+.status-idle    { background:#f0b232 !important; }
+.status-dnd     { background:#f23f43 !important; }
+.status-offline { background:#80848e !important; }
 
-  /* History list */
-  .project-list { display:flex;flex-direction:column;gap:8px; }
-  .project-card { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px;transition:transform 0.2s var(--transition),box-shadow 0.2s,border-color 0.2s;cursor:pointer; }
-  .project-card:hover { transform:translateX(4px);box-shadow:var(--shadow-lg);border-color:var(--border2); }
-  .project-card-icon { width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0; }
-  .project-card-info { flex:1;min-width:0; }
-  .project-card-name { font-size:0.88rem;font-weight:500; }
-  .project-card-meta { font-size:0.74rem;color:var(--text4);margin-top:2px; }
-  .project-card-right { display:flex;flex-direction:column;align-items:flex-end;gap:5px;flex-shrink:0; }
-  .project-card-year { font-size:0.72rem;color:var(--text4); }
+/* ── SPOTIFY LIVE CARD ── */
+.spotify-card {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid rgba(30,215,96,0.2); border-radius:var(--radius);
+  padding:14px 16px; margin-bottom:14px; box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:13px;
+  transition:transform 0.2s, box-shadow 0.2s;
+  position:relative; overflow:hidden;
+}
+.spotify-card::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(30,215,96,0.05),transparent);
+  pointer-events:none;
+}
+.spotify-card:hover { transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+.spotify-album { width:48px; height:48px; border-radius:8px; flex-shrink:0; object-fit:cover; box-shadow:0 4px 12px rgba(0,0,0,0.3); }
+.spotify-info { flex:1; min-width:0; }
+.spotify-label { font-size:0.64rem; color:#1ed760; text-transform:uppercase; letter-spacing:0.1em; font-weight:600; display:flex; align-items:center; gap:5px; margin-bottom:3px; }
+.spotify-song   { font-size:0.88rem; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.spotify-artist { font-size:0.74rem; color:var(--text4); margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.spotify-bar      { height:2px; background:var(--border2); border-radius:1px; margin-top:8px; overflow:hidden; }
+.spotify-bar-fill { height:100%; background:#1ed760; border-radius:1px; transition:width 1s linear; }
+.spotify-time     { font-size:0.68rem; color:var(--text4); display:flex; justify-content:space-between; margin-top:4px; }
 
-  /* ABOUT */
-  .about-block { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:10px;box-shadow:var(--shadow); }
-  .about-block h3 { font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text4);margin-bottom:10px; }
-  .about-block p { font-size:0.9rem;line-height:1.7;color:var(--text2);font-weight:300; }
-  .skills-list { display:flex;flex-wrap:wrap;gap:6px;margin-top:8px; }
-  .skill-tag { background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius-xs);padding:5px 10px;font-size:0.75rem;color:var(--text3); }
-  .timeline { display:flex;flex-direction:column; }
-  .timeline-item { display:flex;gap:14px;padding:12px 0;border-bottom:1px solid var(--border); }
-  .timeline-item:last-child { border-bottom:none;padding-bottom:0; }
-  .timeline-dot { width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0;margin-top:6px; }
-  .timeline-title { font-size:0.88rem;font-weight:500; }
-  .timeline-sub { font-size:0.76rem;color:var(--text4);margin-top:2px; }
+/* ── DISCORD ACTIVITY CARD ── */
+.activity-card {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:12px 14px; margin-bottom:8px; box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:12px;
+  transition:transform 0.2s, box-shadow 0.2s;
+}
+.activity-card:hover { transform:translateX(4px); box-shadow:var(--shadow-lg); }
+.activity-icon { width:44px; height:44px; border-radius:10px; object-fit:cover; flex-shrink:0; background:var(--bg3); display:flex; align-items:center; justify-content:center; font-size:1.3rem; }
+.activity-name   { font-size:0.85rem; font-weight:500; }
+.activity-detail { font-size:0.74rem; color:var(--text4); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.activity-elapsed { font-size:0.68rem; color:var(--text4); margin-top:3px; }
 
-  /* CONTACT */
-  .contact-item { display:flex;align-items:center;gap:14px;background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:8px;box-shadow:var(--shadow);cursor:pointer;transition:all 0.2s var(--transition); }
-  .contact-item:hover { transform:translateX(4px);box-shadow:var(--shadow-lg); }
-  .contact-icon-wrap { width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0; }
-  .contact-label { font-size:0.72rem;color:var(--text4);text-transform:uppercase;letter-spacing:0.06em; }
-  .contact-value { font-size:0.88rem;font-weight:500;margin-top:1px; }
+/* ── PROJECTS ── */
+.project-featured {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius);
+  padding:20px; margin-bottom:10px; box-shadow:var(--shadow);
+  transition:transform 0.22s var(--transition), box-shadow 0.22s;
+}
+.project-featured:hover { transform:translateY(-3px); box-shadow:var(--shadow-lg); }
+.project-featured-header { display:flex; align-items:flex-start; gap:14px; margin-bottom:14px; }
+.project-icon { width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; flex-shrink:0; box-shadow:0 4px 14px rgba(0,0,0,0.2); }
+.project-featured-info { flex:1; }
+.project-featured-name { font-size:1.05rem; font-weight:600; color:var(--text); letter-spacing:-0.02em; }
+.project-featured-sub  { font-size:0.78rem; color:var(--text4); margin-top:3px; }
+.project-status {
+  display:inline-flex; align-items:center; gap:5px;
+  padding:4px 10px; border-radius:20px; font-size:0.68rem;
+  font-weight:600; letter-spacing:0.04em; text-transform:uppercase; flex-shrink:0;
+}
+.project-status.active  { background:rgba(48,209,88,0.12);  color:var(--accent3); border:1px solid rgba(48,209,88,0.25); }
+.project-status.paused  { background:rgba(255,159,10,0.1);   color:var(--orange);  border:1px solid rgba(255,159,10,0.25); }
+.project-status.done    { background:rgba(0,122,255,0.08);   color:var(--accent);  border:1px solid rgba(0,122,255,0.2); }
+.project-status-dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+.project-status.active .project-status-dot { animation:pulse-dot 1.5s ease infinite; }
+@keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.project-desc { font-size:0.88rem; line-height:1.65; color:var(--text2); font-weight:300; margin-bottom:14px; }
+.project-progress-wrap { margin-bottom:14px; }
+.project-progress-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; }
+.project-progress-label { font-size:0.72rem; color:var(--text4); text-transform:uppercase; letter-spacing:0.06em; }
+.project-progress-pct   { font-size:0.78rem; font-weight:600; color:var(--text); }
+.project-progress-bg   { height:5px; background:var(--border2); border-radius:3px; overflow:hidden; }
+.project-progress-fill { height:100%; border-radius:3px; width:0%; transition:width 1.2s var(--transition); }
+.project-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.project-tag  { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-xs); padding:4px 9px; font-size:0.72rem; color:var(--text3); }
+.project-list { display:flex; flex-direction:column; gap:8px; }
+.project-card {
+  background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:var(--radius-sm);
+  padding:14px 16px; box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:14px;
+  transition:transform 0.2s var(--transition), box-shadow 0.2s, border-color 0.2s; cursor:pointer;
+}
+.project-card:hover { transform:translateX(4px); box-shadow:var(--shadow-lg); border-color:var(--border2); }
+.project-card-icon  { width:40px; height:40px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
+.project-card-info  { flex:1; min-width:0; }
+.project-card-name  { font-size:0.88rem; font-weight:500; }
+.project-card-meta  { font-size:0.74rem; color:var(--text4); margin-top:2px; }
+.project-card-right { display:flex; flex-direction:column; align-items:flex-end; gap:5px; flex-shrink:0; }
+.project-card-year  { font-size:0.72rem; color:var(--text4); }
 
-  /* CLOCK */
-  .clock-widget { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;box-shadow:var(--shadow);margin-bottom:14px; }
-  .clock-time { font-family:'Instrument Serif',serif;font-size:3rem;letter-spacing:-0.04em;color:var(--text);line-height:1; }
-  .clock-date { font-size:0.8rem;color:var(--text4);margin-top:6px; }
+/* ── ABOUT ── */
+.about-block { background:var(--surface); backdrop-filter:var(--blur); border:1px solid var(--border); border-radius:var(--radius); padding:20px; margin-bottom:10px; box-shadow:var(--shadow); }
+.about-block h3 { font-size:0.75rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--text4); margin-bottom:10px; }
+.about-block p  { font-size:0.9rem; line-height:1.7; color:var(--text2); font-weight:300; }
+.skills-list { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.skill-tag   { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius-xs); padding:5px 10px; font-size:0.75rem; color:var(--text3); }
+.timeline        { display:flex; flex-direction:column; }
+.timeline-item   { display:flex; gap:14px; padding:12px 0; border-bottom:1px solid var(--border); }
+.timeline-item:last-child { border-bottom:none; padding-bottom:0; }
+.timeline-dot    { width:8px; height:8px; border-radius:50%; flex-shrink:0; margin-top:6px; }
+.timeline-title  { font-size:0.88rem; font-weight:500; }
+.timeline-sub    { font-size:0.76rem; color:var(--text4); margin-top:2px; }
 
-  /* NAV */
-  .bottom-nav { position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:30px;padding:8px 12px;box-shadow:var(--shadow-lg);display:flex;gap:4px;align-items:center; }
-  .nav-btn { background:none;border:none;padding:9px 14px;border-radius:22px;display:flex;align-items:center;gap:7px;font-size:0.78rem;font-weight:500;color:var(--text4);transition:all 0.25s var(--transition);white-space:nowrap;font-family:inherit; }
-  .nav-btn .nav-icon { font-size:1rem;transition:transform 0.2s; }
-  .nav-btn:hover { color:var(--text); }
-  .nav-btn.active { background:var(--accent);color:white;box-shadow:0 4px 14px rgba(0,122,255,0.35); }
-  .nav-btn.active .nav-icon { transform:scale(1.1); }
-  .nav-label { transition:opacity 0.2s,max-width 0.25s var(--transition); }
-  .nav-btn:not(.active) .nav-label { opacity:0;max-width:0;overflow:hidden; }
-  .nav-btn.active .nav-label { max-width:70px; }
+/* ── CONTACT ── */
+.contact-item { display:flex; align-items:center; gap:14px; background:var(--surface); backdrop-filter:var(--blur); border:1px solid var(--border); border-radius:var(--radius-sm); padding:14px 16px; margin-bottom:8px; box-shadow:var(--shadow); cursor:pointer; transition:all 0.2s var(--transition); }
+.contact-item:hover { transform:translateX(4px); box-shadow:var(--shadow-lg); }
+.contact-icon-wrap { width:40px; height:40px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+.contact-label { font-size:0.72rem; color:var(--text4); text-transform:uppercase; letter-spacing:0.06em; }
+.contact-value { font-size:0.88rem; font-weight:500; margin-top:1px; }
 
-  .top-bar { position:sticky;top:16px;z-index:50;display:flex;justify-content:flex-end;padding:16px 4px 0;margin-bottom:-8px;pointer-events:none; }
-  .top-controls { display:flex;gap:8px;pointer-events:all; }
-  .control-btn { width:36px;height:36px;border-radius:50%;background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;font-size:0.9rem;color:var(--text3);transition:all 0.2s; }
-  .control-btn:hover { color:var(--text);transform:scale(1.08);box-shadow:var(--shadow-lg); }
+/* ── CLOCK ── */
+.clock-widget { background:var(--surface); backdrop-filter:var(--blur); border:1px solid var(--border); border-radius:var(--radius); padding:20px; text-align:center; box-shadow:var(--shadow); margin-bottom:14px; }
+.clock-time { font-family:'Instrument Serif',serif; font-size:3rem; letter-spacing:-0.04em; color:var(--text); line-height:1; }
+.clock-date { font-size:0.8rem; color:var(--text4); margin-top:6px; }
 
-  #toast { position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--text);color:var(--bg);padding:10px 18px;border-radius:20px;font-size:0.8rem;font-weight:500;z-index:200;opacity:0;transition:all 0.35s var(--transition);pointer-events:none;white-space:nowrap; }
-  #toast.show { opacity:1;transform:translateX(-50%) translateY(0); }
-  .scroll-progress { position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));z-index:200;transition:width 0.1s;border-radius:0 1px 1px 0; }
+/* ── BOTTOM NAV ── */
+.bottom-nav {
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
+  z-index:100; background:var(--surface); backdrop-filter:var(--blur);
+  border:1px solid var(--border); border-radius:30px; padding:8px 12px;
+  box-shadow:var(--shadow-lg); display:flex; gap:4px; align-items:center;
+}
+.nav-btn { background:none; border:none; padding:9px 14px; border-radius:22px; display:flex; align-items:center; gap:7px; font-size:0.78rem; font-weight:500; color:var(--text4); transition:all 0.25s var(--transition); white-space:nowrap; font-family:inherit; }
+.nav-btn .nav-icon { font-size:1rem; transition:transform 0.2s; }
+.nav-btn:hover { color:var(--text); }
+.nav-btn.active { background:var(--accent); color:white; box-shadow:0 4px 14px rgba(0,122,255,0.35); }
+.nav-btn.active .nav-icon { transform:scale(1.1); }
+.nav-label { transition:opacity 0.2s, max-width 0.25s var(--transition); }
+.nav-btn:not(.active) .nav-label { opacity:0; max-width:0; overflow:hidden; }
+.nav-btn.active .nav-label { max-width:70px; }
 
-  .fade-up { opacity:0;transform:translateY(16px);animation:fadeUp 0.5s var(--transition) forwards; }
-  @keyframes fadeUp { to{opacity:1;transform:translateY(0)} }
-  .fade-up:nth-child(1){animation-delay:.05s} .fade-up:nth-child(2){animation-delay:.1s}
-  .fade-up:nth-child(3){animation-delay:.15s} .fade-up:nth-child(4){animation-delay:.2s}
-  .fade-up:nth-child(5){animation-delay:.25s} .fade-up:nth-child(6){animation-delay:.3s}
-  .fade-up:nth-child(7){animation-delay:.35s} .fade-up:nth-child(8){animation-delay:.4s}
+/* ── TOP BAR ── */
+.top-bar { position:sticky; top:16px; z-index:50; display:flex; justify-content:flex-end; padding:16px 4px 0; margin-bottom:-8px; pointer-events:none; }
+.top-controls { display:flex; gap:8px; pointer-events:all; }
+.control-btn { width:36px; height:36px; border-radius:50%; background:var(--surface); backdrop-filter:var(--blur); border:1px solid var(--border); box-shadow:var(--shadow); display:flex; align-items:center; justify-content:center; font-size:0.9rem; color:var(--text3); transition:all 0.2s; }
+.control-btn:hover { color:var(--text); transform:scale(1.08); box-shadow:var(--shadow-lg); }
 
-  /* DISCORD STATUS DOT */
-  .status-online    { background:#23a55a !important; }
-  .status-idle      { background:#f0b232 !important; }
-  .status-dnd       { background:#f23f43 !important; }
-  .status-offline   { background:#80848e !important; }
+/* ── TOAST ── */
+#toast { position:fixed; bottom:90px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--text); color:var(--bg); padding:10px 18px; border-radius:20px; font-size:0.8rem; font-weight:500; z-index:200; opacity:0; transition:all 0.35s var(--transition); pointer-events:none; white-space:nowrap; }
+#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
 
-  /* SPOTIFY LIVE CARD */
-  .spotify-card {
-    background:var(--surface);backdrop-filter:var(--blur);
-    border:1px solid rgba(30,215,96,0.2);border-radius:var(--radius);
-    padding:14px 16px;margin-bottom:14px;box-shadow:var(--shadow);
-    display:flex;align-items:center;gap:13px;
-    transition:transform 0.2s,box-shadow 0.2s;
-    position:relative;overflow:hidden;
-  }
-  .spotify-card::before {
-    content:'';position:absolute;inset:0;
-    background:linear-gradient(135deg,rgba(30,215,96,0.04),transparent);
-    pointer-events:none;
-  }
-  .spotify-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}
-  .spotify-album {
-    width:48px;height:48px;border-radius:8px;flex-shrink:0;
-    object-fit:cover;box-shadow:0 4px 12px rgba(0,0,0,0.15);
-  }
-  .spotify-info{flex:1;min-width:0;}
-  .spotify-label{font-size:0.64rem;color:#1ed760;text-transform:uppercase;letter-spacing:0.1em;font-weight:600;display:flex;align-items:center;gap:5px;margin-bottom:3px;}
-  .spotify-label svg{width:12px;height:12px;fill:#1ed760;}
-  .spotify-song{font-size:0.88rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .spotify-artist{font-size:0.74rem;color:var(--text4);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .spotify-bar{height:2px;background:var(--border2);border-radius:1px;margin-top:8px;overflow:hidden;}
-  .spotify-bar-fill{height:100%;background:#1ed760;border-radius:1px;transition:width 1s linear;}
-  .spotify-time{font-size:0.68rem;color:var(--text4);display:flex;justify-content:space-between;margin-top:4px;}
+/* ── SCROLL PROGRESS ── */
+.scroll-progress { position:fixed; top:0; left:0; height:2px; background:linear-gradient(90deg,var(--accent),var(--accent2)); z-index:200; transition:width 0.1s; border-radius:0 1px 1px 0; }
 
-  /* DISCORD ACTIVITY CARD */
-  .activity-card {
-    background:var(--surface);backdrop-filter:var(--blur);
-    border:1px solid var(--border);border-radius:var(--radius-sm);
-    padding:12px 14px;margin-bottom:8px;box-shadow:var(--shadow);
-    display:flex;align-items:center;gap:12px;
-  }
-  .activity-icon{width:42px;height:42px;border-radius:10px;object-fit:cover;flex-shrink:0;background:var(--bg3);}
-  .activity-info{flex:1;min-width:0;}
-  .activity-name{font-size:0.82rem;font-weight:500;}
-  .activity-detail{font-size:0.72rem;color:var(--text4);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .activity-elapsed{font-size:0.68rem;color:var(--text4);margin-top:2px;}
+/* ── FADE UP ── */
+.fade-up { opacity:0; transform:translateY(16px); animation:fadeUp 0.5s var(--transition) forwards; }
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+.fade-up:nth-child(1){animation-delay:.05s} .fade-up:nth-child(2){animation-delay:.1s}
+.fade-up:nth-child(3){animation-delay:.15s} .fade-up:nth-child(4){animation-delay:.2s}
+.fade-up:nth-child(5){animation-delay:.25s} .fade-up:nth-child(6){animation-delay:.3s}
+.fade-up:nth-child(7){animation-delay:.35s} .fade-up:nth-child(8){animation-delay:.4s}
 
-  /* BANNER with image */
-  .banner-img { width:100%;height:100%;object-fit:cover;display:block; }
+/* ── ANIMATED TITLE LETTERS ── */
+.title-letter {
+  display:inline-block;
+  opacity:0;
+  transform:translateY(6px);
+  animation:letterIn 0.4s var(--transition) forwards;
+}
+@keyframes letterIn { to { opacity:1; transform:translateY(0); } }
 
-  /* DISCORD badge on avatar */
-  .discord-badge {
-    position:absolute;top:-2px;right:-2px;
-    width:20px;height:20px;border-radius:50%;
-    background:#5865f2;border:2px solid var(--bg);
-    display:flex;align-items:center;justify-content:center;
-    font-size:0.6rem;color:white;font-weight:700;
-  }
-
-  /* LOADING SKELETON */
-  .skeleton{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg2) 50%,var(--bg3) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px;}
-  @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-  ::selection { background:rgba(0,122,255,0.2); }
-  ::-webkit-scrollbar { width:0; }
-  @media(max-width:480px){.currently-grid{grid-template-columns:1fr}.profile-name{font-size:1.4rem}.clock-time{font-size:2.4rem}}
+::selection { background:rgba(0,122,255,0.2); }
+::-webkit-scrollbar { width:0; }
+@media(max-width:480px){
+  .currently-grid{grid-template-columns:1fr}
+  .profile-name{font-size:1.4rem}
+  .clock-time{font-size:2.4rem}
+}
 </style>
 </head>
 <body>
@@ -291,18 +378,18 @@
 <div id="toast"></div>
 <canvas id="bg-canvas"></canvas>
 
-<!-- ════════════════════════════════════════════════════════════
-     ✏️  ALL YOUR DATA LIVES IN THE <script> AT THE BOTTOM.
-         Search for "EDIT YOUR DATA" to find it quickly.
-         You never need to touch HTML — just the DATA object.
-════════════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════════════════════
+     All your content data lives in const DATA = {}
+     in the <script> at the bottom of this file.
+     Search "EDIT YOUR DATA" to find it.
+════════════════════════════════════════════════ -->
 
 <!-- HOME -->
 <div class="page active" id="page-home">
   <div class="banner-wrap"><div class="banner"></div><div class="banner-overlay"></div></div>
   <div class="container">
     <div class="top-bar"><div class="top-controls">
-      <button class="control-btn theme-toggle">🌙</button>
+      <button class="control-btn theme-toggle">☀️</button>
       <button class="control-btn" onclick="copyLink()">🔗</button>
     </div></div>
 
@@ -318,6 +405,7 @@
     </div>
 
     <div class="badges fade-up" id="badgesEl"></div>
+
     <div class="bio-card fade-up">
       <div class="bio-text" id="bioText"></div>
       <div class="bio-meta">
@@ -329,48 +417,33 @@
 
     <div class="stats-row fade-up" id="statsRow"></div>
 
-    <!-- DISCORD LIVE: Spotify (shown only when listening) -->
+    <!-- Discord: Spotify (visible only when listening) -->
     <div id="spotifySection" style="display:none">
-      <div class="section-label">listening on spotify <span style="color:#1ed760">●</span></div>
-      <div class="spotify-card fade-up" id="spotifyCard">
+      <div class="section-label">listening on spotify <span style="color:#1ed760;font-size:0.55rem">●</span></div>
+      <div class="spotify-card fade-up">
         <img class="spotify-album" id="spotifyAlbum" src="" alt="album">
         <div class="spotify-info">
           <div class="spotify-label">
-            <svg viewBox="0 0 24 24" width="12" height="12" style="fill:#1ed760;flex-shrink:0"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+            <svg viewBox="0 0 24 24" width="11" height="11" style="fill:#1ed760;flex-shrink:0"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
             Spotify
           </div>
-          <div class="spotify-song" id="spotifySong">—</div>
+          <div class="spotify-song"   id="spotifySong">—</div>
           <div class="spotify-artist" id="spotifyArtist">—</div>
           <div class="spotify-bar"><div class="spotify-bar-fill" id="spotifyBar" style="width:0%"></div></div>
           <div class="spotify-time"><span id="spotifyElapsed">0:00</span><span id="spotifyTotal">0:00</span></div>
         </div>
       </div>
     </div>
-    <!-- DISCORD LIVE: Other activities (game etc) -->
+
+    <!-- Discord: Other activities (games, apps) -->
     <div id="activitiesSection" style="display:none">
       <div class="section-label">currently doing</div>
       <div id="activitiesList" class="fade-up"></div>
     </div>
 
-    <div class="section-label">now playing</div>
-    <div class="music-player fade-up" id="musicPlayer">
-      <div class="music-cover" id="musicCover">🎵</div>
-      <div class="music-info">
-        <div class="music-title" id="musicTitle">—</div>
-        <div class="music-artist" id="musicArtist">—</div>
-        <div class="music-progress" onclick="seekMusic(event)">
-          <div class="music-progress-bar" id="progressBar"></div>
-        </div>
-      </div>
-      <div class="music-controls">
-        <button class="music-btn" onclick="prevTrack()">⏮</button>
-        <button class="music-btn play-btn" id="playBtn" onclick="togglePlay()">▶</button>
-        <button class="music-btn" onclick="nextTrack()">⏭</button>
-      </div>
-    </div>
-
     <div class="section-label">currently</div>
     <div class="currently-grid fade-up" id="currentlyGrid"></div>
+
     <div class="section-label">links</div>
     <div class="links-grid fade-up" id="linksGrid"></div>
   </div>
@@ -379,7 +452,7 @@
 <!-- PROJECTS -->
 <div class="page" id="page-projects">
   <div class="container" style="padding-top:70px">
-    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">🌙</button></div></div>
+    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">☀️</button></div></div>
     <div class="section-label" style="margin-top:0">active project</div>
     <div id="featuredProject" class="fade-up"></div>
     <div class="section-label">project history</div>
@@ -390,7 +463,7 @@
 <!-- ABOUT -->
 <div class="page" id="page-about">
   <div class="container" style="padding-top:70px">
-    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">🌙</button></div></div>
+    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">☀️</button></div></div>
     <div class="clock-widget fade-up"><div class="clock-time" id="clock">00:00:00</div><div class="clock-date" id="clockDate">—</div></div>
     <div class="about-block fade-up"><h3>about me</h3><p id="aboutText"></p></div>
     <div class="about-block fade-up"><h3>skills & tools</h3><div class="skills-list" id="skillsList"></div></div>
@@ -402,7 +475,7 @@
 <!-- CONTACT -->
 <div class="page" id="page-contact">
   <div class="container" style="padding-top:70px">
-    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">🌙</button></div></div>
+    <div class="top-bar" style="margin-bottom:16px"><div class="top-controls"><button class="control-btn theme-toggle">☀️</button></div></div>
     <div class="section-label" style="margin-top:0">get in touch</div>
     <div class="bio-card fade-up" style="margin-bottom:16px"><div class="bio-text" id="contactBio"></div></div>
     <div id="contactList" class="fade-up"></div>
@@ -411,7 +484,7 @@
   </div>
 </div>
 
-<!-- NAV -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="nav-btn active" onclick="switchPage('home',this)"><span class="nav-icon">⌂</span><span class="nav-label">Home</span></button>
   <button class="nav-btn" onclick="switchPage('projects',this)"><span class="nav-icon">◈</span><span class="nav-label">Projects</span></button>
@@ -421,26 +494,26 @@
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════
-   ✏️  EDIT YOUR DATA — this is the ONLY section you need to touch.
-       Everything on the page is generated from this object.
+   ✏️  EDIT YOUR DATA — only touch this section.
    ═══════════════════════════════════════════════════════════════════ */
 const DATA = {
 
-  /* ── Discord Integration (Lanyard) ────────────────────────────────
-     1. Join https://discord.gg/lanyard (free, takes 10 seconds)
-     2. Enable Developer Mode in Discord settings → Advanced
-     3. Right-click your profile → Copy User ID
-     4. Paste it below
-     Set to '' to disable Discord integration entirely.           */
-  discordId: '1347843276287512576',   // ← PASTE YOUR DISCORD USER ID HERE e.g. '123456789012345678'
+  /* ── Discord / Lanyard ────────────────────────────────────────────
+     Steps:
+       1. Join discord.gg/lanyard  (just be a member, that's it)
+       2. Discord Settings → Advanced → enable Developer Mode
+       3. Right-click your avatar → Copy User ID
+       4. Paste below
+     Leave '' to disable.                                           */
+  discordId: '',   // ← e.g. '123456789012345678'
 
-  /* ── Profile info ─────────────────────────────────────────────── */
-  avatar:  '🌸',           // fallback if Discord not connected. emoji OR image URL
-  name:    'vxe',
-  handle:  '@xodi4 · he/him',
+  /* ── Profile ─────────────────────────────────────────────────── */
+  avatar:  '🌸',        // fallback emoji OR image URL 'https://...'
+  name:    'your name',
+  handle:  '@vxe · he/him',
 
   /* ── Badges ───────────────────────────────────────────────────────
-     type: 'verified' | 'premium' | 'dev' | 'roblox' | '' (grey)   */
+     type: 'verified' | 'premium' | 'dev' | 'roblox' | ''          */
   badges: [
     { icon: '✦',  label: 'verified',   type: 'verified' },
     { icon: '★',  label: 'premium',    type: 'premium'  },
@@ -449,150 +522,140 @@ const DATA = {
     { icon: '🇵🇱', label: 'poland',   type: ''          },
   ],
 
-  /* ── Bio ──────────────────────────────────────────────────────── */
-  bioText:     `hey! i'm <strong>your name</strong> — a developer & roblox game dev from poland. building cool stuff on roblox. obsessed with clean ui and <em>details.</em>`,
+  /* ── Bio ─────────────────────────────────────────────────────── */
+  bioText:     `hey! i'm <strong>vxe</strong> — a developer & roblox game dev from poland. building cool stuff on roblox. obsessed with clean ui and <em>aesthetic details.</em>`,
   bioLocation: 'Poland',
   bioWeather:  '🌤️ 22°C',
 
-  /* ── Home stats ───────────────────────────────────────────────── */
+  /* ── Stats ──────────────────────────────────────────────────── */
   stats: [
     { value: '12',  label: 'Projects'  },
-    { value: '435',  label: 'Followers' },
-    { value: '263', label: 'Commits'   },
+    { value: '4k',  label: 'Followers' },
+    { value: '847', label: 'Commits'   },
   ],
 
-  /* ── Currently section ────────────────────────────────────────── */
+  /* ── Currently section ──────────────────────────────────────── */
   currently: [
-    { emoji: '🎮', label: 'making',   value: 'Roblox game'   },
-    { emoji: '📺', label: 'watching', value: 'Severance S2'  },
-    { emoji: '📖', label: 'reading',  value: 'Atomic Habits' },
+    { emoji: '🎮', label: 'making',   value: 'Roblox game'     },
+    { emoji: '📺', label: 'watching', value: 'Severance S2'    },
+    { emoji: '📖', label: 'reading',  value: 'Atomic Habits'   },
     { emoji: '💭', label: 'mood',     value: 'chill & cozy 🍵' },
   ],
 
-  /* ── Social links ─────────────────────────────────────────────── */
+  /* ── Links ───────────────────────────────────────────────────── */
   links: [
-    { icon: '🐙', bg: 'rgba(0,0,0,0.06)',       name: 'GitHub',      url: 'github.com/vxe-dev',   href: '#' },
-    { icon: '𝕏',  bg: 'rgba(0,122,255,0.08)',    name: 'Twitter / X', url: '@...',             href: '#' },
-    { icon: '💬', bg: 'rgba(88,86,214,0.1)',      name: 'Discord',     url: 'xodi4',         href: '#' },
+    { icon: '🐙', bg: 'rgba(255,255,255,0.05)', name: 'GitHub',      url: 'github.com/username',  href: '#' },
+    { icon: '𝕏',  bg: 'rgba(0,122,255,0.08)',   name: 'Twitter / X', url: '@vxe',                 href: '#' },
+    { icon: '💬', bg: 'rgba(88,86,214,0.1)',     name: 'Discord',     url: '@vxe',                 href: '#' },
+    { icon: '🎮', bg: 'rgba(255,45,85,0.08)',    name: 'Roblox',      url: 'roblox.com/users/...', href: '#' },
   ],
 
   /* ═══════════════════════════════════════════════════════════════
      ✏️  PROJECTS PAGE
-     ─────────────────────────────────────────────────────────────
-     activeProject  →  the big card at the top
-     projectHistory →  the list below it (add/remove freely)
-
-     status options: 'active' | 'paused' | 'done'
+     status: 'active' | 'paused' | 'done'
      progress: 0–100
   ═══════════════════════════════════════════════════════════════ */
-
   activeProject: {
     icon:          '🎮',
     iconBg:        'linear-gradient(135deg,#ff2d5530,#ff9f0a30)',
-    name:          'untitled...',       // ← change me
+    name:          'Untitled Roblox Game',
     subtitle:      'Roblox · Luau · Solo dev',
-    status:        'active',                     // 'active' | 'paused' | 'done'
+    status:        'active',
     statusLabel:   'In Development',
     description:   `A roblox game i'm currently building — still early stages but coming along nicely. Focused on smooth gameplay, clean ui and a unique vibe that feels different from anything else on the platform. More details soon™`,
-    progress:      25,                           // 0–100
+    progress:      35,
     progressColor: 'linear-gradient(90deg,#ff2d55,#ff9f0a)',
     tags:          ['Roblox', 'Luau', 'Game Dev', 'UI Design', 'Solo Dev'],
-    link:          '#',                          // set to your game page when live
+    link:          '#',
   },
 
-  /* ── History list — add or remove objects freely ───────────────
-     Fields: icon, iconBg, name, meta, status, year, link        */
+  /* ── History — add/remove freely ────────────────────────────────
+     Copy a block below to add more entries.                        */
   projectHistory: [
     {
-      icon:    '✨',
-      iconBg:  'linear-gradient(135deg,#667eea22,#764ba222)',
-      name:    'Portfolio v3',
-      meta:    'Web · HTML/CSS/JS',
-      status:  'done',
-      year:    '2025',
-      link:    '#',
+      icon:'✨', iconBg:'linear-gradient(135deg,#667eea22,#764ba222)',
+      name:'Portfolio v3', meta:'Web · HTML/CSS/JS', status:'done', year:'2025', link:'#',
     },
     {
-      icon:    '⚡',
-      iconBg:  'linear-gradient(135deg,#4facfe22,#00f2fe22)',
-      name:    'Discord Bot',
-      meta:    'Node.js · Discord.js',
-      status:  'done',
-      year:    '2024',
-      link:    '#',
+      icon:'⚡', iconBg:'linear-gradient(135deg,#4facfe22,#00f2fe22)',
+      name:'Discord Bot', meta:'Node.js · Discord.js', status:'done', year:'2024', link:'#',
     },
     {
-      icon:    '🌿',
-      iconBg:  'linear-gradient(135deg,#43e97b22,#38f9d722)',
-      name:    'Green App',
-      meta:    'React Native',
-      status:  'paused',
-      year:    '2024',
-      link:    '#',
+      icon:'🌿', iconBg:'linear-gradient(135deg,#43e97b22,#38f9d722)',
+      name:'Green App', meta:'React Native', status:'paused', year:'2024', link:'#',
     },
     {
-      icon:    '🎨',
-      iconBg:  'linear-gradient(135deg,#fa709a22,#fee14022)',
-      name:    'UI Kit',
-      meta:    'Figma · Design System',
-      status:  'done',
-      year:    '2023',
-      link:    '#',
+      icon:'🎨', iconBg:'linear-gradient(135deg,#fa709a22,#fee14022)',
+      name:'UI Kit', meta:'Figma · Design System', status:'done', year:'2023', link:'#',
     },
-    // ↓ copy this block to add more entries ↓
-    // {
-    //   icon:   '🔥',
-    //   iconBg: 'linear-gradient(135deg,#ff6b6b22,#feca5722)',
-    //   name:   'Project Name',
-    //   meta:   'Tech stack',
-    //   status: 'done',
-    //   year:   '2023',
-    //   link:   '#',
-    // },
+    // ─── template to copy ───────────────────────────────────────
+    // { icon:'🔥', iconBg:'linear-gradient(135deg,#ff6b6b22,#feca5722)',
+    //   name:'Project Name', meta:'Tech stack', status:'done', year:'2023', link:'#' },
   ],
 
-  /* ── About page ───────────────────────────────────────────────── */
-  aboutText: `hi! i'm a passionate developer from poland. i love building beautiful things on the internet — and now on roblox too. when i'm not coding i'm usually listening to music, exploring game mechanics, or drinking way too much tea.`,
-
+  /* ── About ──────────────────────────────────────────────────── */
+  aboutText: `hi! i'm a developer from poland. i love building things on the internet — and now on roblox too. when i'm not coding i'm exploring game mechanics or drinking way too much tea.`,
   skills: ['Luau', 'Roblox Studio', 'HTML/CSS', 'JavaScript', 'React', 'Figma', 'Node.js', 'Python', 'Git'],
-
-  /* timeline — most recent first */
   timeline: [
-    { title: 'Started Roblox game dev',    sub: '2025 · solo project', color: '#ff2d55' },
-    { title: 'Started freelancing',         sub: '2024 · remote',       color: '#007aff' },
-    { title: 'Launched first OSS project',  sub: '2024 · open source',  color: '#5856d6' },
-    { title: 'Started coding',              sub: '2022 · self-taught',  color: '#30d158' },
+    { title:'Started Roblox game dev',   sub:'2025 · solo project', color:'#ff2d55' },
+    { title:'Started freelancing',        sub:'2024 · remote',       color:'#007aff' },
+    { title:'Launched first OSS project', sub:'2024 · open source',  color:'#5856d6' },
+    { title:'Started coding',             sub:'2022 · self-taught',  color:'#30d158' },
   ],
-
   funFacts: `🎮 been playing roblox since childhood\n☕ drinks 4+ cups of tea daily\n🌙 night owl, most productive after midnight\n🌍 dreams of travelling to japan\n🎵 always has music playing`,
 
-  /* ── Contact page ─────────────────────────────────────────────── */
-  contactBio: `feel free to reach out! i'm open to collabs, freelance work, or just a friendly chat ✉️`,
-
+  /* ── Contact ─────────────────────────────────────────────────── */
+  contactBio: `feel free to reach out! open to collabs, freelance work, or just a chat ✉️`,
   contacts: [
-    { icon: '📧', bg: 'rgba(255,45,85,0.1)',   label: 'email',   value: 'your@email.com',    copy: 'your@email.com'   },
-    { icon: '💬', bg: 'rgba(0,122,255,0.1)',    label: 'discord', value: '@username',          copy: '@username'        },
-    { icon: '𝕏',  bg: 'rgba(0,0,0,0.06)',       label: 'twitter', value: '@username',          copy: '@username'        },
-    { icon: '🎮', bg: 'rgba(255,45,85,0.08)',   label: 'roblox',  value: 'your roblox name',  copy: 'your roblox name' },
+    { icon:'📧', bg:'rgba(255,45,85,0.12)',  label:'email',   value:'your@email.com',   copy:'your@email.com'   },
+    { icon:'💬', bg:'rgba(0,122,255,0.12)',  label:'discord', value:'@vxe',             copy:'@vxe'             },
+    { icon:'𝕏',  bg:'rgba(255,255,255,0.05)', label:'twitter', value:'@vxe',             copy:'@vxe'             },
+    { icon:'🎮', bg:'rgba(255,45,85,0.08)', label:'roblox',  value:'your roblox name', copy:'your roblox name' },
   ],
-
   responseTimes: [
-    { value: '~2h', label: 'Discord' },
-    { value: '~1d', label: 'Email'   },
-    { value: '✓',   label: 'Open'    },
+    { value:'~2h', label:'Discord' },
+    { value:'~1d', label:'Email'   },
+    { value:'✓',   label:'Open'    },
   ],
 };
 /* ═══════════════════════════════════════════════════════════════════
-   ENGINE — renders everything above. No need to edit below.
+   ENGINE — no need to edit below
    ═══════════════════════════════════════════════════════════════════ */
 
-// Avatar
+// ── Animated title: each letter fades in one by one ──
+function animateTitle() {
+  const title = document.title; // "@vxe · profile"
+  let html = '';
+  title.split('').forEach((ch, i) => {
+    const delay = (i * 60) + 'ms';
+    if (ch === ' ') {
+      html += `<span style="display:inline-block;width:.25em"></span>`;
+    } else {
+      html += `<span class="title-letter" style="animation-delay:${delay}">${ch === '<' ? '&lt;' : ch}</span>`;
+    }
+  });
+  // Inject into a hidden element; the real <title> stays for SEO
+  // Also animate profile name on load
+  const nameEl = document.getElementById('profileName');
+  if (nameEl) {
+    const name = DATA.name;
+    let nameHtml = '';
+    name.split('').forEach((ch, i) => {
+      const delay = (200 + i * 55) + 'ms';
+      nameHtml += ch === ' '
+        ? `<span style="display:inline-block;width:.3em"></span>`
+        : `<span class="title-letter" style="animation-delay:${delay}">${ch}</span>`;
+    });
+    nameEl.innerHTML = nameHtml;
+  }
+}
+
+// ── Render profile basics ──
 const av = document.getElementById('avatarEl');
 av.innerHTML = DATA.avatar.startsWith('http')
-  ? `<img src="${DATA.avatar}" style="width:100%;height:100%;object-fit:cover">`
+  ? `<img src="${DATA.avatar}" style="width:100%;height:100%;object-fit:cover" alt="avatar">`
   : DATA.avatar;
 
-document.getElementById('profileName').textContent  = DATA.name;
 document.getElementById('profileHandle').textContent = DATA.handle;
 document.getElementById('bioText').innerHTML         = DATA.bioText;
 document.getElementById('bioLocation').textContent   = DATA.bioLocation;
@@ -601,58 +664,40 @@ document.getElementById('aboutText').textContent     = DATA.aboutText;
 document.getElementById('funFacts').innerHTML        = DATA.funFacts.replace(/\n/g,'<br>');
 document.getElementById('contactBio').textContent    = DATA.contactBio;
 
-// Badges
 document.getElementById('badgesEl').innerHTML = DATA.badges
   .map(b=>`<span class="badge ${b.type}">${b.icon} ${b.label}</span>`).join('');
 
-// Stats
 document.getElementById('statsRow').innerHTML = DATA.stats
   .map(s=>`<div class="stat-card"><div class="stat-num" data-count="${s.value}">0</div><div class="stat-label">${s.label}</div></div>`).join('');
 
-// Currently
 document.getElementById('currentlyGrid').innerHTML = DATA.currently
   .map(c=>`<div class="currently-item"><div class="currently-label">${c.emoji} ${c.label}</div><div class="currently-value">${c.value}</div></div>`).join('');
 
-// Links
 document.getElementById('linksGrid').innerHTML = DATA.links
   .map(l=>`<a class="link-item" href="${l.href}" onclick="showToast('Opening ${l.name}...')">
     <div class="link-icon" style="background:${l.bg}">${l.icon}</div>
     <div class="link-text"><div class="link-name">${l.name}</div><div class="link-url">${l.url}</div></div>
     <div class="link-arrow">›</div></a>`).join('');
 
-// Music
-let currentTrack = 0;
-function loadTrackUI(){
-  const t = DATA.tracks[currentTrack];
-  document.getElementById('musicTitle').textContent  = t.title;
-  document.getElementById('musicArtist').textContent = t.artist;
-  document.getElementById('musicCover').textContent  = t.icon;
-}
-loadTrackUI();
-
-// Skills
 document.getElementById('skillsList').innerHTML = DATA.skills
   .map(s=>`<span class="skill-tag">${s}</span>`).join('');
 
-// Timeline
 document.getElementById('timelineEl').innerHTML = DATA.timeline
   .map(t=>`<div class="timeline-item">
     <div class="timeline-dot" style="background:${t.color}"></div>
     <div><div class="timeline-title">${t.title}</div><div class="timeline-sub">${t.sub}</div></div>
   </div>`).join('');
 
-// Contacts
 document.getElementById('contactList').innerHTML = DATA.contacts
   .map(c=>`<div class="contact-item" onclick="copyText('${c.copy}','✓ ${c.label} copied!')">
     <div class="contact-icon-wrap" style="background:${c.bg}">${c.icon}</div>
     <div style="flex:1"><div class="contact-label">${c.label}</div><div class="contact-value">${c.value}</div></div>
     <div style="color:var(--text4);font-size:0.8rem">copy</div></div>`).join('');
 
-// Response times
 document.getElementById('responseStats').innerHTML = DATA.responseTimes
   .map(r=>`<div class="stat-card"><div class="stat-num">${r.value}</div><div class="stat-label">${r.label}</div></div>`).join('');
 
-// Featured project
+// ── Projects ──
 function renderFeatured(){
   const p = DATA.activeProject;
   document.getElementById('featuredProject').innerHTML = `
@@ -663,9 +708,7 @@ function renderFeatured(){
           <div class="project-featured-name">${p.name}</div>
           <div class="project-featured-sub">${p.subtitle}</div>
         </div>
-        <div class="project-status ${p.status}">
-          <div class="project-status-dot"></div>${p.statusLabel}
-        </div>
+        <div class="project-status ${p.status}"><div class="project-status-dot"></div>${p.statusLabel}</div>
       </div>
       <div class="project-desc">${p.description}</div>
       <div class="project-progress-wrap">
@@ -679,11 +722,10 @@ function renderFeatured(){
       </div>
       <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
     </div>`;
-  setTimeout(()=>{ const b=document.getElementById('featuredBar'); if(b) b.style.width=p.progress+'%'; },120);
+  setTimeout(()=>{const b=document.getElementById('featuredBar');if(b)b.style.width=p.progress+'%';},120);
 }
 renderFeatured();
 
-// Project history
 document.getElementById('projectHistory').innerHTML = DATA.projectHistory
   .map(p=>`<div class="project-card" onclick="showToast('${p.name}')">
     <div class="project-card-icon" style="background:${p.iconBg}">${p.icon}</div>
@@ -700,13 +742,13 @@ document.getElementById('projectHistory').innerHTML = DATA.projectHistory
   </div>`).join('');
 
 // ── Cursor ──
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
+const cursor=document.getElementById('cursor'), ring=document.getElementById('cursor-ring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
 (function ar(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(ar);})();
 document.addEventListener('mousedown',()=>document.body.classList.add('clicking'));
 document.addEventListener('mouseup',()=>document.body.classList.remove('clicking'));
-document.querySelectorAll('a,button,.link-item,.contact-item,.project-card,.project-featured,.badge,.stat-card,.currently-item,.music-btn').forEach(el=>{
+document.querySelectorAll('a,button,.link-item,.contact-item,.project-card,.project-featured,.badge,.stat-card,.currently-item').forEach(el=>{
   el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
   el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
 });
@@ -719,33 +761,40 @@ resize(); addEventListener('resize',resize);
 const isDark=()=>document.documentElement.getAttribute('data-theme')==='dark';
 function mkOrbs(){
   orbs=[];
-  const c=isDark()?['rgba(0,122,255,.06)','rgba(88,86,214,.05)','rgba(48,209,88,.04)','rgba(255,45,85,.04)']
-                  :['rgba(0,122,255,.08)','rgba(88,86,214,.07)','rgba(48,209,88,.06)','rgba(255,159,10,.06)'];
-  for(let i=0;i<5;i++) orbs.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:200+Math.random()*300,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,color:c[i%c.length]});
+  const c=isDark()
+    ?['rgba(0,122,255,.07)','rgba(88,86,214,.06)','rgba(48,209,88,.04)','rgba(255,45,85,.04)','rgba(120,110,255,.05)']
+    :['rgba(0,122,255,.08)','rgba(88,86,214,.07)','rgba(48,209,88,.06)','rgba(255,159,10,.06)','rgba(120,110,255,.05)'];
+  for(let i=0;i<5;i++) orbs.push({
+    x:Math.random()*canvas.width, y:Math.random()*canvas.height,
+    r:200+Math.random()*300, vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4, color:c[i]
+  });
 }
 mkOrbs();
 (function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   orbs.forEach(o=>{
-    o.x+=o.vx;o.y+=o.vy;
-    if(o.x<-o.r)o.x=canvas.width+o.r;if(o.x>canvas.width+o.r)o.x=-o.r;
-    if(o.y<-o.r)o.y=canvas.height+o.r;if(o.y>canvas.height+o.r)o.y=-o.r;
+    o.x+=o.vx; o.y+=o.vy;
+    if(o.x<-o.r)o.x=canvas.width+o.r; if(o.x>canvas.width+o.r)o.x=-o.r;
+    if(o.y<-o.r)o.y=canvas.height+o.r; if(o.y>canvas.height+o.r)o.y=-o.r;
     const g=ctx.createRadialGradient(o.x,o.y,0,o.x,o.y,o.r);
-    g.addColorStop(0,o.color);g.addColorStop(1,'transparent');
-    ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+    g.addColorStop(0,o.color); g.addColorStop(1,'transparent');
+    ctx.beginPath(); ctx.arc(o.x,o.y,o.r,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
   });
   requestAnimationFrame(draw);
 })();
 
-// ── Theme ──
-let dark=false;
+// ── Theme — dark by default ──
+let dark = true; // starts dark
 function toggleTheme(){
   dark=!dark;
-  document.documentElement.setAttribute('data-theme',dark?'dark':'');
-  document.querySelectorAll('.theme-toggle').forEach(b=>b.textContent=dark?'☀️':'🌙');
+  document.documentElement.setAttribute('data-theme', dark?'dark':'');
+  const icon = dark ? '☀️' : '🌙';
+  document.querySelectorAll('.theme-toggle').forEach(b=>b.textContent=icon);
   mkOrbs();
 }
 document.querySelectorAll('.theme-toggle').forEach(b=>b.addEventListener('click',toggleTheme));
+// set correct icon on load (already dark)
+document.querySelectorAll('.theme-toggle').forEach(b=>b.textContent='☀️');
 
 // ── Navigation ──
 function switchPage(name,btn){
@@ -757,7 +806,6 @@ function switchPage(name,btn){
   btn.classList.add('active');
   scrollTo({top:0,behavior:'smooth'});
   if(name==='projects') setTimeout(()=>{const b=document.getElementById('featuredBar');if(b)b.style.width=DATA.activeProject.progress+'%';},120);
-  // re-observe counters
   document.querySelectorAll('[data-count]').forEach(el=>ctrObs.observe(el));
 }
 document.querySelectorAll('.page').forEach(p=>{if(!p.classList.contains('active'))p.style.display='none';});
@@ -771,11 +819,13 @@ addEventListener('scroll',()=>{
 // ── Clock ──
 function tick(){
   const n=new Date();
-  document.getElementById('clock').textContent=n.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  document.getElementById('clockDate').textContent=n.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  const el=document.getElementById('clock');
+  if(el) el.textContent=n.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  const de=document.getElementById('clockDate');
+  if(de) de.textContent=n.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
   document.getElementById('localTime').textContent=n.toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'});
 }
-setInterval(tick,1000);tick();
+setInterval(tick,1000); tick();
 
 // ── Counter animation ──
 function animCount(el,target){
@@ -793,19 +843,6 @@ const ctrObs=new IntersectionObserver(entries=>{
 },{threshold:0.3});
 document.querySelectorAll('[data-count]').forEach(el=>ctrObs.observe(el));
 
-// ── Music ──
-let playing=false,progress=35,pInt;
-function togglePlay(){
-  playing=!playing;
-  document.getElementById('playBtn').textContent=playing?'⏸':'▶';
-  document.getElementById('musicPlayer').classList.toggle('playing',playing);
-  if(playing){pInt=setInterval(()=>{progress=(progress+0.5)%100;document.getElementById('progressBar').style.width=progress+'%';},300);}
-  else clearInterval(pInt);
-}
-function seekMusic(e){const r=e.currentTarget.getBoundingClientRect();progress=((e.clientX-r.left)/r.width)*100;document.getElementById('progressBar').style.width=progress+'%';}
-function prevTrack(){currentTrack=(currentTrack-1+DATA.tracks.length)%DATA.tracks.length;loadTrackUI();showToast('♪ '+DATA.tracks[currentTrack].title);}
-function nextTrack(){currentTrack=(currentTrack+1)%DATA.tracks.length;loadTrackUI();showToast('♪ '+DATA.tracks[currentTrack].title);}
-
 // ── Toast ──
 let toastT;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('show'),2200);}
@@ -814,195 +851,138 @@ function copyLink(){navigator.clipboard.writeText(location.href).then(()=>showTo
 
 // ── Keyboard shortcuts ──
 document.addEventListener('keydown',e=>{
-  if(e.target.tagName==='INPUT')return;
+  if(e.target.tagName==='INPUT') return;
   const nb=document.querySelectorAll('.nav-btn');
-  if(e.key==='d')toggleTheme();
-  if(e.key==='1')switchPage('home',nb[0]);
-  if(e.key==='2')switchPage('projects',nb[1]);
-  if(e.key==='3')switchPage('about',nb[2]);
-  if(e.key==='4')switchPage('contact',nb[3]);
-  if(e.key===' '){e.preventDefault();togglePlay();}
+  if(e.key==='d') toggleTheme();
+  if(e.key==='1') switchPage('home',nb[0]);
+  if(e.key==='2') switchPage('projects',nb[1]);
+  if(e.key==='3') switchPage('about',nb[2]);
+  if(e.key==='4') switchPage('contact',nb[3]);
 });
 
 /* ═══════════════════════════════════════════════════════════════════
-   🎮 DISCORD / LANYARD INTEGRATION
-   ─────────────────────────────────────────────────────────────────
-   Automatically pulls:
-     • Avatar (pfp) from Discord CDN
-     • Banner from Discord CDN (requires Nitro to have one)
-     • Live online status (online / idle / dnd / offline)
-     • What you're listening to on Spotify (real-time progress bar)
-     • Games / apps you have open as activities
-   Uses WebSocket for real-time updates — no refresh needed.
+   🎮  DISCORD / LANYARD — real-time presence via WebSocket
+   Syncs: avatar · banner · status dot · Spotify card · activities
    ═══════════════════════════════════════════════════════════════════ */
-
 const CDN = 'https://cdn.discordapp.com';
-
-// Status colors matching Discord exactly
-const STATUS_COLOR = {
-  online:  '#23a55a',
-  idle:    '#f0b232',
-  dnd:     '#f23f43',
-  offline: '#80848e',
-};
+const STATUS_COLOR = { online:'#23a55a', idle:'#f0b232', dnd:'#f23f43', offline:'#80848e' };
 
 function msToTime(ms){
-  const s=Math.floor(ms/1000);
-  const m=Math.floor(s/60);
-  const sec=s%60;
-  return `${m}:${sec.toString().padStart(2,'0')}`;
+  const s=Math.floor(ms/1000), m=Math.floor(s/60);
+  return `${m}:${(s%60).toString().padStart(2,'0')}`;
 }
 
-// ── Apply Discord data to the page ──
 function applyDiscordData(data){
   const user   = data.discord_user;
   const status = data.discord_status || 'offline';
 
-  // ── Avatar ──
+  // Avatar
   if(user.avatar){
-    const ext    = user.avatar.startsWith('a_') ? 'gif' : 'png';
-    const avUrl  = `${CDN}/avatars/${user.id}/${user.avatar}.${ext}?size=256`;
-    const avEl   = document.getElementById('avatarEl');
-    avEl.innerHTML = `<img src="${avUrl}" style="width:100%;height:100%;object-fit:cover" alt="avatar">`;
+    const ext   = user.avatar.startsWith('a_')?'gif':'png';
+    const avUrl = `${CDN}/avatars/${user.id}/${user.avatar}.${ext}?size=256`;
+    document.getElementById('avatarEl').innerHTML = `<img src="${avUrl}" style="width:100%;height:100%;object-fit:cover" alt="pfp">`;
   }
 
-  // ── Banner ──
+  // Banner
   if(user.banner){
-    const ext     = user.banner.startsWith('a_') ? 'gif' : 'png';
-    const banUrl  = `${CDN}/banners/${user.id}/${user.banner}.${ext}?size=1024`;
-    const banWrap = document.querySelector('.banner-wrap');
-    // Replace the animated gradient div with the real banner image
-    const banDiv  = banWrap.querySelector('.banner');
-    banDiv.style.backgroundImage = `url('${banUrl}')`;
-    banDiv.style.backgroundSize  = 'cover';
-    banDiv.style.backgroundPosition = 'center';
-    banDiv.style.animation = 'none';
+    const ext    = user.banner.startsWith('a_')?'gif':'png';
+    const banUrl = `${CDN}/banners/${user.id}/${user.banner}.${ext}?size=1024`;
+    const bd     = document.querySelector('.banner');
+    bd.style.backgroundImage    = `url('${banUrl}')`;
+    bd.style.backgroundSize     = 'cover';
+    bd.style.backgroundPosition = 'center';
+    bd.style.animation          = 'none';
   } else if(user.accent_color){
-    // Fallback: use accent colour as solid banner
-    const hex = '#' + user.accent_color.toString(16).padStart(6,'0');
-    const banDiv = document.querySelector('.banner');
-    banDiv.style.background = `linear-gradient(135deg, ${hex}cc, ${hex}44)`;
-    banDiv.style.animation  = 'none';
+    const hex = '#'+user.accent_color.toString(16).padStart(6,'0');
+    const bd  = document.querySelector('.banner');
+    bd.style.background = `linear-gradient(135deg,${hex}cc,${hex}44)`;
+    bd.style.animation  = 'none';
   }
 
-  // ── Status dot ──
+  // Status dot
   const dot = document.querySelector('.avatar-status');
   dot.style.background = STATUS_COLOR[status] || STATUS_COLOR.offline;
-  // remove old pulse for offline
-  if(status === 'offline') dot.style.animation = 'none';
-  else dot.style.animation = 'pulse-status 2s ease infinite';
+  dot.style.animation  = status==='offline' ? 'none' : 'pulse-status 2s ease infinite';
 
-  // ── Spotify ──
-  const spot = data.spotify;
+  // Spotify
+  const spot    = data.spotify;
   const spotSec = document.getElementById('spotifySection');
   if(spot && data.listening_to_spotify){
     spotSec.style.display = '';
     document.getElementById('spotifySong').textContent   = spot.song;
     document.getElementById('spotifyArtist').textContent = `${spot.artist} · ${spot.album}`;
     document.getElementById('spotifyAlbum').src          = spot.album_art_url;
-
-    const dur  = spot.timestamps.end   - spot.timestamps.start;
-    const elapsed = Date.now()         - spot.timestamps.start;
-    const pct  = Math.min(100, (elapsed / dur) * 100);
-
-    document.getElementById('spotifyBar').style.width     = pct + '%';
+    const dur     = spot.timestamps.end - spot.timestamps.start;
+    const elapsed = Date.now()          - spot.timestamps.start;
+    document.getElementById('spotifyBar').style.width     = Math.min(100,(elapsed/dur)*100)+'%';
     document.getElementById('spotifyElapsed').textContent = msToTime(Math.max(0,elapsed));
     document.getElementById('spotifyTotal').textContent   = msToTime(dur);
-
-    // live progress tick
-    clearInterval(window._spotifyTick);
-    window._spotifyTick = setInterval(()=>{
-      const now = Date.now() - spot.timestamps.start;
-      const p   = Math.min(100,(now/dur)*100);
+    clearInterval(window._spotTick);
+    window._spotTick = setInterval(()=>{
+      const now=Date.now()-spot.timestamps.start, p=Math.min(100,(now/dur)*100);
       document.getElementById('spotifyBar').style.width     = p+'%';
       document.getElementById('spotifyElapsed').textContent = msToTime(Math.max(0,now));
-      if(p>=100) clearInterval(window._spotifyTick);
+      if(p>=100) clearInterval(window._spotTick);
     },1000);
   } else {
-    spotSec.style.display = 'none';
-    clearInterval(window._spotifyTick);
+    spotSec.style.display='none';
+    clearInterval(window._spotTick);
   }
 
-  // ── Other activities (games, etc.) ── type 0 = Game, type 2 = Spotify (skip)
-  const acts = (data.activities||[]).filter(a=>a.type!==2);
-  const actSec  = document.getElementById('activitiesSection');
-  const actList = document.getElementById('activitiesList');
+  // Activities (skip type 2 = Spotify, already shown above)
+  const acts   = (data.activities||[]).filter(a=>a.type!==2);
+  const actSec = document.getElementById('activitiesSection');
   if(acts.length){
-    actSec.style.display = '';
-    actList.innerHTML = acts.map(a=>{
+    actSec.style.display='';
+    document.getElementById('activitiesList').innerHTML = acts.map(a=>{
       const iconUrl = a.application_id && a.assets?.large_image
-        ? `${CDN}/app-assets/${a.application_id}/${a.assets.large_image}.png`
-        : null;
-      const imgTag = iconUrl
-        ? `<img class="activity-icon" src="${iconUrl}" alt="">`
-        : `<div class="activity-icon" style="display:flex;align-items:center;justify-content:center;font-size:1.3rem">🎮</div>`;
+        ? `${CDN}/app-assets/${a.application_id}/${a.assets.large_image}.png` : null;
+      const img = iconUrl
+        ? `<img class="activity-icon" src="${iconUrl}" alt="" onerror="this.outerHTML='<div class=activity-icon>🎮</div>'">`
+        : `<div class="activity-icon">🎮</div>`;
       const elapsed = a.timestamps?.start ? msToTime(Date.now()-a.timestamps.start)+' elapsed' : '';
       return `<div class="activity-card">
-        ${imgTag}
+        ${img}
         <div class="activity-info">
           <div class="activity-name">${a.name}</div>
           ${a.details?`<div class="activity-detail">${a.details}</div>`:''}
-          ${a.state?`<div class="activity-detail" style="opacity:0.7">${a.state}</div>`:''}
+          ${a.state?`<div class="activity-detail" style="opacity:.7">${a.state}</div>`:''}
           ${elapsed?`<div class="activity-elapsed">⏱ ${elapsed}</div>`:''}
         </div>
       </div>`;
     }).join('');
   } else {
-    actSec.style.display = 'none';
+    actSec.style.display='none';
   }
 }
 
-// ── Connect to Lanyard WebSocket for real-time updates ──
 function connectLanyard(id){
-  if(!id) return;
-  let ws;
-  let heartbeatInterval;
-
+  let ws, hbInt;
   function connect(){
     ws = new WebSocket('wss://api.lanyard.rest/socket');
-
-    ws.addEventListener('open',()=>{
-      ws.send(JSON.stringify({op:2,d:{subscribe_to_id:id}}));
+    ws.addEventListener('open', ()=> ws.send(JSON.stringify({op:2,d:{subscribe_to_id:id}})));
+    ws.addEventListener('message', ev=>{
+      const msg=JSON.parse(ev.data);
+      if(msg.op===1) hbInt=setInterval(()=>{if(ws.readyState===1) ws.send(JSON.stringify({op:3}));}, msg.d.heartbeat_interval);
+      if(msg.op===0 && msg.d) applyDiscordData(msg.d);
     });
-
-    ws.addEventListener('message',ev=>{
-      const msg = JSON.parse(ev.data);
-
-      // op 1 = Hello — start heartbeat
-      if(msg.op===1){
-        heartbeatInterval = setInterval(()=>{
-          if(ws.readyState===WebSocket.OPEN) ws.send(JSON.stringify({op:3}));
-        }, msg.d.heartbeat_interval);
-      }
-
-      // op 0 = Event (INIT_STATE or PRESENCE_UPDATE)
-      if(msg.op===0 && msg.d){
-        applyDiscordData(msg.d);
-      }
-    });
-
-    ws.addEventListener('close',()=>{
-      clearInterval(heartbeatInterval);
-      // Reconnect after 5s if disconnected
-      setTimeout(connect, 5000);
-    });
-
-    ws.addEventListener('error',()=> ws.close());
+    ws.addEventListener('close', ()=>{ clearInterval(hbInt); setTimeout(connect,5000); });
+    ws.addEventListener('error', ()=> ws.close());
   }
-
   connect();
 }
 
-// ── Boot Lanyard if ID is set ──
 if(DATA.discordId){
   connectLanyard(DATA.discordId);
 } else {
-  // No Discord ID — show a small hint badge in console only
-  console.info('%c💡 Tip: Set DATA.discordId to your Discord User ID to auto-sync avatar, banner and live status!','color:#007aff;font-weight:bold');
+  console.info('%c💡 Set DATA.discordId to sync your Discord avatar, banner & status!','color:#5865f2;font-weight:bold');
 }
 
-showToast('💡 Keys: 1–4 navigate · D theme · Space music');
-setTimeout(()=>document.getElementById('toast').classList.remove('show'),3500);
+// ── Run title animation after DOM is painted ──
+animateTitle();
+
+showToast('💡 Keys: 1–4 pages · D toggle theme');
+setTimeout(()=>document.getElementById('toast').classList.remove('show'),3200);
 </script>
 </body>
 </html>
