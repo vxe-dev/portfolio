@@ -101,22 +101,6 @@
   .link-arrow { color:var(--text4);font-size:0.8rem;transition:transform 0.2s,color 0.2s; }
   .link-item:hover .link-arrow { transform:translateX(3px);color:var(--accent); }
 
-  /* MUSIC */
-  .music-player { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px; }
-  .music-cover { width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#667eea,#764ba2);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem; }
-  .music-player.playing .music-cover { animation:vinyl 4s linear infinite; }
-  @keyframes vinyl { from{filter:hue-rotate(0deg)} to{filter:hue-rotate(360deg)} }
-  .music-info { flex:1;min-width:0; }
-  .music-title { font-size:0.88rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
-  .music-artist { font-size:0.75rem;color:var(--text4);margin-top:2px; }
-  .music-progress { height:3px;background:var(--border2);border-radius:2px;margin-top:10px;overflow:hidden;cursor:pointer; }
-  .music-progress-bar { height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;width:35%;transition:width 0.5s linear; }
-  .music-controls { display:flex;align-items:center;gap:10px;flex-shrink:0; }
-  .music-btn { background:none;border:none;padding:6px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--text3);transition:color 0.2s,background 0.2s,transform 0.15s;font-size:0.9rem; }
-  .music-btn:hover { color:var(--text);background:var(--border); }
-  .music-btn.play-btn { width:36px;height:36px;background:var(--accent);color:white;font-size:0.85rem; }
-  .music-btn.play-btn:hover { background:var(--accent2);transform:scale(1.08); }
-
   /* CURRENTLY */
   .currently-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px; }
   .currently-item { background:var(--surface);backdrop-filter:var(--blur);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;box-shadow:var(--shadow);transition:transform 0.2s,box-shadow 0.2s; }
