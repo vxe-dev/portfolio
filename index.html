@@ -155,8 +155,9 @@ body { font-family:'DM Sans',-apple-system,sans-serif; background:var(--bg); col
 /* ── BADGES ── */
 .badges { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:20px; }
 .badge { display:inline-flex; align-items:center; gap:5px; padding:5px 10px; border-radius:20px; font-size:0.72rem; font-weight:500; border:1px solid var(--border2); background:var(--surface); backdrop-filter:var(--blur); color:var(--text2); transition:transform 0.2s, box-shadow 0.2s; user-select:none; }
+.badge-emoji { color: initial; font-style: normal; filter: grayscale(1) contrast(1.1); }
 .badge:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
-.badge.verified { background:rgba(200,200,200,0.08); border-color:rgba(200,200,200,0.2); color:var(--text); }
+.badge.verified { background:rgba(200,200,200,0.08); border-color:rgba(200,200,200,0.2); color:var(--text2); }
 .badge.premium  { background:rgba(180,180,180,0.06); border-color:rgba(180,180,180,0.2); color:var(--text2); }
 .badge.dev      { background:rgba(200,200,200,0.06); border-color:rgba(200,200,200,0.18); color:var(--text2); }
 .badge.roblox   { background:rgba(160,160,160,0.06); border-color:rgba(160,160,160,0.18); color:var(--text3); }
@@ -367,8 +368,8 @@ body { font-family:'DM Sans',-apple-system,sans-serif; background:var(--bg); col
     <div class="bio-card fade-up">
       <div class="bio-text" id="bioText"></div>
       <div class="bio-meta">
-        <div class="bio-meta-item">📍 <span id="bioLocation"></span></div>
-        <div class="bio-meta-item">🕐 <span id="localTime">--:--</span></div>
+        <div class="bio-meta-item"><span style="color:initial;filter:grayscale(1) contrast(1.1)">📍</span> <span id="bioLocation"></span></div>
+        <div class="bio-meta-item"><span style="color:initial;filter:grayscale(1) contrast(1.1)">🕐</span> <span id="localTime">--:--</span></div>
         <div class="bio-meta-item"><span id="bioWeather"></span></div>
       </div>
     </div>
@@ -618,18 +619,18 @@ document.getElementById('badgesEl').innerHTML = DATA.badges.map(b=>{
       </div>
     </span>`;
   }
-  return `<span class="badge ${b.type}">${b.icon} ${b.label}</span>`;
+  return `<span class="badge ${b.type}"><span class="badge-emoji">${b.icon}</span> ${b.label}</span>`;
 }).join('');
 
 document.getElementById('statsRow').innerHTML = DATA.stats
   .map(s=>`<div class="stat-card"><div class="stat-num" data-count="${s.value}">0</div><div class="stat-label">${s.label}</div></div>`).join('');
 
 document.getElementById('currentlyGrid').innerHTML = DATA.currently
-  .map(c=>`<div class="currently-item"><div class="currently-label">${c.emoji} ${c.label}</div><div class="currently-value">${c.value}</div></div>`).join('');
+  .map(c=>`<div class="currently-item"><div class="currently-label"><span style="color:initial;filter:grayscale(1) contrast(1.1)">${c.emoji}</span> ${c.label}</div><div class="currently-value">${c.value}</div></div>`).join('');
 
 document.getElementById('linksGrid').innerHTML = DATA.links
   .map(l=>`<a class="link-item" href="${l.href}" onclick="showToast('Opening ${l.name}...')">
-    <div class="link-icon" style="background:${l.bg}">${l.icon}</div>
+    <div class="link-icon" style="background:${l.bg}"><span style="color:initial;filter:grayscale(1) contrast(1.1)">${l.icon}</span></div>
     <div class="link-text"><div class="link-name">${l.name}</div><div class="link-url">${l.url}</div></div>
     <div class="link-arrow">›</div></a>`).join('');
 
